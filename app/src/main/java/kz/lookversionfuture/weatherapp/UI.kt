@@ -1,6 +1,5 @@
 package kz.lookversionfuture.weatherapp
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +14,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Card
 import androidx.compose.material.TextField
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -27,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -35,7 +32,7 @@ import kz.lookversionfuture.weatherapp.data.WeatherModel
 import kz.lookversionfuture.weatherapp.ui.theme.BlueLight
 
 @Composable
-fun mainList(list: List<WeatherModel>, currentDay: MutableState<WeatherModel>){
+fun MainList(list: List<WeatherModel>, currentDay: MutableState<WeatherModel>){
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ){
@@ -96,7 +93,7 @@ fun ListItem(item: WeatherModel, currentDay: MutableState<WeatherModel>) {
 }
 
 @Composable
-fun dialogSearch(dialogState: MutableState<Boolean>, onSubmit: (String) -> Unit){
+fun DialogSearch(dialogState: MutableState<Boolean>, onSubmit: (String) -> Unit){
     val dialogText = remember {
         mutableStateOf("")
     }

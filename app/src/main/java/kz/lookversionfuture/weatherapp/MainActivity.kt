@@ -29,6 +29,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            var rememberCity = remember {
+                mutableStateOf("Astana")
+            }
             val daysList = remember {
                 mutableStateOf(listOf<WeatherModel>())
             }
@@ -48,11 +51,12 @@ class MainActivity : ComponentActivity() {
                 ))
             }
             if (dialogState.value) {
-                dialogSearch(dialogState, onSubmit = {
+                DialogSearch(dialogState, onSubmit = {
                     getData(it, this@MainActivity, daysList, currentDay)
+                    rememberCity.value = it
                 })
             }
-            getData("Astana", this, daysList, currentDay)
+            getData(rememberCity.value, this, daysList, currentDay)
             Image(painter = painterResource(id = R.drawable.weather_bg),
                 contentDescription = "background",
                 modifier = Modifier
@@ -62,7 +66,7 @@ class MainActivity : ComponentActivity() {
             )
             Column {
                 MainCard(currentDay, onClickSync = {
-                    getData("Astana", this@MainActivity, daysList, currentDay)
+                    getData(rememberCity.value, this@MainActivity, daysList, currentDay)
                 },
                     onClickSearch = {
                         dialogState.value = true
